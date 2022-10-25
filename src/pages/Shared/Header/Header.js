@@ -5,8 +5,9 @@ import { useState } from 'react';
 import { DarkModeToggle } from "@anatoliygatt/dark-mode-toggle";
 
 
+
 const Header = () => {
-  const [mode, setMode] = useState("dark");
+  const [mode, setMode] = useState(false);
     return (
       <nav className="navbar bg-base-300 block lg:flex lg:justify-between md:flex md:justify-between">
         <div className="flex text-xl ml-5">

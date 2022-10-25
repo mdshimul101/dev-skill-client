@@ -1,10 +1,32 @@
 import React from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
+import Course from '../Course/Course';
 
 const Courses = () => {
+    const courses = useLoaderData();
+    
+
+    console.log(courses);
     return (
-        <div>
-            <h3>Courses</h3>
+      <div className="grid grid-cols-12 gap-4 mx-5">
+
+        <div className="col-start-1 lg:col-end-4 col-end-12  mt-5">
+          {courses.map((course) => (
+            <p className="mt-5 text-sky-700" key={course.id}>
+              <Link to={`/courses/${course.id}`} className="text-xl text-light">
+                {course.name}
+              </Link>
+            </p>
+          ))}
         </div>
+        
+
+        <div className="col-start-4 col-end-12 grid gap-5 grid-cols-2 mt-10">
+          {courses.map((course) => (
+            <Course key={course.id} course={course}></Course>
+          ))}
+        </div>
+      </div>
     );
 };
 

@@ -10,7 +10,7 @@ const Blog = () => {
           className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box"
         >
           <div className="collapse-title text-xl font-medium">
-            1. What is CORS?
+            What is CORS?
           </div>
           <div className="collapse-content">
             <p>
@@ -27,7 +27,7 @@ const Blog = () => {
           className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box m-1"
         >
           <div className="collapse-title text-xl font-medium">
-            2. Why are you using firebase? What other options do you have to
+            Why are you using firebase? What other options do you have to
             implement authentication?
           </div>
           <div className="collapse-content">
@@ -52,7 +52,7 @@ const Blog = () => {
           className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box m-1"
         >
           <div className="collapse-title text-xl font-medium">
-            3. How does the private route work?
+            How does the private route work?
           </div>
           <div className="collapse-content">
             <p>
@@ -69,7 +69,7 @@ const Blog = () => {
           className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box m-1"
         >
           <div className="collapse-title text-xl font-medium">
-            4. What is Node? How does Node work?
+            What is Node? How does Node work?
           </div>
           <div className="collapse-content">
             <p>

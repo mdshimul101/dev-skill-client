@@ -1,11 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaSortAmountUp } from "react-icons/fa";
+import { FaSortAmountUp, FaUser } from "react-icons/fa";
 import { useState } from "react";
 import { DarkModeToggle } from "@anatoliygatt/dark-mode-toggle";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
   const [mode, setMode] = useState(false);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error("error ", error));
+  };
+
   return (
     <nav className="navbar bg-base-300 block lg:flex lg:justify-between md:flex md:justify-between">
       <div className="flex text-xl ml-5">
@@ -15,7 +25,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="mr-5">
-        <div className="flex sm:block text-blue-700 font-semibold">
+        <div className=" flex flex-wrap text-blue-700 font-semibold">
           <Link to="/courses" className="mr-3">
             Courses
           </Link>
@@ -27,13 +37,34 @@ const Header = () => {
             FAQ
           </Link>
 
-          <Link to="/login" className="mr-3">
-            Login
-          </Link>
+          <div>
+            {user?.uid ? (
+              <div className="flex justify-center items-center">
+                {user?.photoURL ? (
+                  <img
+                    src={user?.photoURL}
+                    className="h-8 rounded-full"
+                    alt=""
+                  />
+                ) : (
+                  <FaUser></FaUser>
+                )}
 
-          <Link to="/register" className="mr-3">
-            Register
-          </Link>
+                <button onClick={handleLogOut} className="ml-3">
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <>
+                <Link to="/login" className="mr-3">
+                  Login
+                </Link>
+                <Link to="/register" className="mr-3">
+                  Register
+                </Link>
+              </>
+            )}
+          </div>
           <DarkModeToggle
             mode={mode}
             dark="Dark"

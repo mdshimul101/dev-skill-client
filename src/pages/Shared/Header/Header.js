@@ -45,6 +45,7 @@ const Header = () => {
                     src={user?.photoURL}
                     className="h-8 rounded-full"
                     alt=""
+                    title={user.displayName}
                   />
                 ) : (
                   <FaUser></FaUser>

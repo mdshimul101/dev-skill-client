@@ -1,10 +1,10 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
 const CourseDetails = () => {
   const courseDetailsData = useLoaderData();
-  const { name, img, description, ratings, skills, Duration, reviews } =
+  const { name, img, description, ratings, skills, Duration, reviews, id } =
     courseDetailsData;
   console.log(courseDetailsData);
   return (
@@ -41,9 +41,11 @@ const CourseDetails = () => {
             </p>
           </div>
           <div className="card-actions justify-end">
-            <button className="btn bg-sky-800 border-none">
-              Get Premium Access
-            </button>
+            <Link to={`/checkout/${id}`}>
+              <button className="btn bg-sky-800 border-none">
+                Get Premium Access
+              </button>
+            </Link>
           </div>
         </div>
       </div>

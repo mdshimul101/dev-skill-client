@@ -90,7 +90,7 @@ const Login = () => {
           </div>
 
           <button type="submit" className="btn btn-info">
-            Submit
+            Log In
           </button>
           <p className="text-red-800 py-1">{error}</p>
         </form>

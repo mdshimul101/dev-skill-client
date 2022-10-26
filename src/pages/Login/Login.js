@@ -16,6 +16,8 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="Your Email"
+                name='email'
+                required
                 className="input input-bordered input-secondary w-full max-w-xs"
               />
             </div>
@@ -23,6 +25,8 @@ const Login = () => {
               <label className="mr-16">Password</label>
               <input
                 type="password"
+                name='password'
+                required
                 placeholder="Your password"
                 className="input input-bordered input-secondary w-full max-w-xs"
               />
@@ -36,7 +40,7 @@ const Login = () => {
           <hr />
 
           <div className="block lg:flex justify-center  mt-5">
-            <button className="mb-4 w-48 grow  flex justify-center items-center rounded-md border text-center border-sky-500 p-2 mr-2">
+            <button className="mb-3 w-48 grow  flex justify-center items-center rounded-md border text-center border-sky-500 p-2 mr-2">
               <FaGoogle className="mr-3 text-sky-700"></FaGoogle>
               Log In with Google
             </button>

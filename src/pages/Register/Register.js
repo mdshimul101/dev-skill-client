@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
 import { useState } from "react";
-
-import { FaFacebook, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,7 +21,9 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setError("");
         form.reset();
+        navigate("/login");
       })
       .catch((error) => {
         console.error("error ", error);
@@ -79,23 +80,13 @@ const Register = () => {
           </div>
 
           <button type="submit" className="btn btn-info">
-            Submit
+            Register
           </button>
-          <p>{error}</p>
+          <p className="text-red-800 py-1">{error}</p>
         </form>
 
         <hr />
 
-        <div className="block lg:flex justify-center  mt-5">
-          <button className="mb-3 w-48 grow  flex justify-center items-center rounded-md border text-center border-sky-500 p-2 mr-2">
-            <FaGoogle className="mr-3 text-sky-700"></FaGoogle>
-            Register with Google
-          </button>
-          <button className="mb-3  grow pt-2 flex justify-center items-center rounded-md border text-center border-sky-500 p-2">
-            <FaFacebook className="mr-3 text-sky-700"></FaFacebook>
-            Register with Facebook
-          </button>
-        </div>
         <p className="text-slate-900 font-semibold mt-3 text-center">
           Already have an account ?
           <Link to="/login" className="text-sky-800">

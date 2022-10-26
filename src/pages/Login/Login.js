@@ -1,15 +1,73 @@
-import React from "react";
-import { FaFacebook, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import React, { useContext, useState } from "react";
+import { FaGithub, FaGoogle } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const { signIn, providerLogin } = useContext(AuthContext);
+  const [error, setError] = useState("");
+
+  const providerGoogle = new GoogleAuthProvider();
+  const providerGitHub = new GithubAuthProvider();
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        setError("");
+        form.reset();
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("error ", error);
+        setError(error.message);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    providerLogin(providerGoogle)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        setError("");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      });
+  };
+
+  const handleGitHubSignIn = () => {
+    providerLogin(providerGitHub)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        setError("");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      });
+  };
+
   return (
     <div>
       <h3 className="text-center text-3xl font-semibold text-sky-600 mt-10 ">
         Login
       </h3>
       <div className="w-10/12 lg:w-6/12  m-auto shadow-xl p-7 rounded-md mt-10">
-        <form className="mb-4 ">
+        <form onSubmit={handleSubmit} className="mb-4 ">
           <div className="mb-3">
             <label className="mr-8">Email address</label>
             <input
@@ -34,19 +92,30 @@ const Login = () => {
           <button type="submit" className="btn btn-info">
             Submit
           </button>
+          <p className="text-red-800 py-1">{error}</p>
         </form>
 
         <hr />
 
         <div className="block lg:flex justify-center  mt-5">
-          <button className="mb-3 w-48 grow  flex justify-center items-center rounded-md border text-center border-sky-500 p-2 mr-2">
-            <FaGoogle className="mr-3 text-sky-700"></FaGoogle>
-            Log In with Google
-          </button>
-          <button className="mb-3  grow pt-2 flex justify-center items-center rounded-md border text-center border-sky-500 p-2">
-            <FaFacebook className="mr-3 text-sky-700"></FaFacebook>
-            Log In with Facebook
-          </button>
+          <Link>
+            <button
+              onClick={handleGoogleSignIn}
+              className="mb-3 w-48 grow  flex justify-center items-center rounded-md border text-center border-sky-500 p-2 mr-2"
+            >
+              <FaGoogle className="mr-3 text-sky-700"></FaGoogle>
+              Log In with Google
+            </button>
+          </Link>
+          <Link>
+            <button
+              onClick={handleGitHubSignIn}
+              className="mb-3  grow pt-2 flex justify-center items-center rounded-md border text-center border-sky-500 p-2"
+            >
+              <FaGithub className="mr-3 text-sky-700"></FaGithub>
+              Log In with GitHub
+            </button>
+          </Link>
         </div>
         <p className="text-slate-900 font-semibold mt-3 text-center">
           Already have an account ?

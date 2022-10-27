@@ -5,6 +5,7 @@ import { useState } from "react";
 import { DarkModeToggle } from "@anatoliygatt/dark-mode-toggle";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+import ReactTooltip from "react-tooltip";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -41,18 +42,21 @@ const Header = () => {
             {user?.uid ? (
               <div className="flex justify-center items-center">
                 {user?.photoURL ? (
-                  <img
-                    src={user?.photoURL}
-                    className="h-8 rounded-full"
-                    alt=""
-                    title={user.displayName}
-                  />
+                  <div>
+                    <img
+                      src={user?.photoURL}
+                      className="h-8 rounded-full"
+                      alt=""
+                      data-tip={user.displayName}
+                    />
+                    <ReactTooltip />
+                  </div>
                 ) : (
                   <FaUser></FaUser>
                 )}
 
                 <button onClick={handleLogOut} className="ml-3">
-                  <Link to="/register">Logout</Link>
+                  <Link to="/">Logout</Link>
                 </button>
               </div>
             ) : (

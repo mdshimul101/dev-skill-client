@@ -23,7 +23,7 @@ const Register = () => {
         console.log(user);
         setError("");
         form.reset();
-        navigate("/login");
+        navigate("/");
       })
       .catch((error) => {
         console.error("error ", error);

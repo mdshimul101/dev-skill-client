@@ -1,12 +1,14 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 
 const Login = () => {
   const { signIn, providerLogin } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const providerGoogle = new GoogleAuthProvider();
   const providerGitHub = new GithubAuthProvider();
@@ -25,7 +27,7 @@ const Login = () => {
         console.log(user);
         setError("");
         form.reset();
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error("error ", error);
@@ -39,7 +41,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         setError("");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -53,7 +55,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         setError("");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);

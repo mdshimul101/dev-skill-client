@@ -4,28 +4,27 @@ import { toast, ToastContainer } from "react-toastify";
 
 const CheckOut = () => {
   const course = useLoaderData();
-  const notify = () => toast("Congratulations!Successfully Enroll...");
+  const { name, price, discount } = course;
+  const notify = () => toast("Successfully Enroll Course");
   return (
     <div>
-      <div className="card w-96 bg-base-200 shadow-xl mx-2 lg:mx-auto mt-20 mb-36">
+      <div className="card bg-base-200 shadow-xl mx-auto w-10/12 mt-20 mb-36">
         <div className="card-body">
-          <h2 className="text-center text-4xl font-bold text-orange-500">
+          <h2 className="text-center text-3xl font-semibold text-sky-700">
             Check Out
           </h2>
-          <h1 className="text-2xl font-semibold">{course.name}</h1>
+          <h1 className="text-2xl font-semibold">{name}</h1>
           <p>
-            <strong>Total: {course.price}K</strong>
+            <strong>Total: {price}K</strong>
           </p>
-          <p>
-            <strong>Discount: {course.discount}%</strong>
-          </p>
-          <p>Get Discount!!!Start your career.</p>
+          <p className="text-yellow-600">Discount: {discount}%</p>
+          <p>Get Discount and Start your Course.</p>
           <div className="card-actions justify-end">
-            <button onClick={notify} className="btn btn-info">
+            <button onClick={notify} className="btn btn-info py-0">
               Enroll Now
             </button>
-            <ToastContainer />
           </div>
+          <ToastContainer />
         </div>
       </div>
     </div>

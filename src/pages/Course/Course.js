@@ -28,7 +28,7 @@ const Course = ({ course }) => {
                 Duration : {Duration} min
               </p>
             </div>
-            <button className="bg-blue-700 px-5 btn border-none text-white">
+            <button className="bg-blue-700 px-5 btn border-none text-white py-0">
               <Link to={`/courses/${id}`}>Details</Link>
             </button>
           </div>

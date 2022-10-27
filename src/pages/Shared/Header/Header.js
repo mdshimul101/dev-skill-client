@@ -24,8 +24,8 @@ const Header = () => {
           Dev Skill
         </Link>
       </div>
-      <div className="mr-5">
-        <div className=" flex flex-wrap text-blue-700 font-semibold">
+      <div className="ml-1 lg:mr-5">
+        <div className="ml-3 my-1 flex justify-items-start flex-wrap items-center  text-blue-700 font-semibold">
           <Link to="/courses" className="mr-3">
             Courses
           </Link>
@@ -66,23 +66,25 @@ const Header = () => {
               </>
             )}
           </div>
-          <DarkModeToggle
-            mode={mode}
-            dark="Dark"
-            light="Light"
-            size="sm"
-            inactiveTrackColor="#e2e8f0"
-            inactiveTrackColorOnHover="#f8fafc"
-            inactiveTrackColorOnActive="#cbd5e1"
-            activeTrackColor="#334155"
-            activeTrackColorOnHover="#1e293b"
-            activeTrackColorOnActive="#0f172a"
-            inactiveThumbColor="#1e293b"
-            activeThumbColor="#e2e8f0"
-            onChange={(mode) => {
-              setMode(mode);
-            }}
-          />
+          <div className="">
+            <DarkModeToggle
+              mode={mode}
+              dark="Dark"
+              light="Light"
+              size="sm"
+              inactiveTrackColor="#e2e8f0"
+              inactiveTrackColorOnHover="#f8fafc"
+              inactiveTrackColorOnActive="#cbd5e1"
+              activeTrackColor="#334155"
+              activeTrackColorOnHover="#1e293b"
+              activeTrackColorOnActive="#0f172a"
+              inactiveThumbColor="#1e293b"
+              activeThumbColor="#e2e8f0"
+              onChange={(mode) => {
+                setMode(mode);
+              }}
+            />
+          </div>
         </div>
       </div>
     </nav>

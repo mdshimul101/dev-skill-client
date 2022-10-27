@@ -10,27 +10,26 @@ const CourseDetails = () => {
   const ref = React.createRef();
 
   return (
-    <div className="card w-10/12 bg-base-200 shadow-xl mx-auto  mt-6">
-      <div className="">
-        <Pdf targetRef={ref} filename="Course.pdf">
-          {({ toPdf }) => (
-            <button
-              onClick={toPdf}
-              className="btn btn-light mx-auto mt-2 mr-2 py-0"
-            >
-              Download PDF{" "}
-              <FaFilePdf onClick={toPdf} className="ml-2"></FaFilePdf>
-            </button>
-          )}
-        </Pdf>
-      </div>
-
+    <div className="card w-72 lg:w-8/12 bg-base-200 shadow-xl mx-auto  mt-6">
+      <Pdf targetRef={ref} filename="Course.pdf">
+        {({ toPdf }) => (
+          <button
+            onClick={toPdf}
+            className="btn btn-light w-44 mx-auto mt-2 mr-2"
+          >
+            Download PDF{" "}
+            <FaFilePdf onClick={toPdf} className="ml-2"></FaFilePdf>
+          </button>
+        )}
+      </Pdf>
       <div ref={ref} className="w-10/12">
-        <figure className="pt-2">
-          <img src={img} alt="" className="rounded-xl w-full" />
+        <figure className="px-10 pt-6">
+          <img src={img} alt="" className="rounded-xl w-3/4" />
         </figure>
-        <div className="card-body ">
-          <h2 className="card-title font-semibold">{name}</h2>
+        <div className="card-body items-center">
+          <h2 className="card-title font-bold">{name}</h2>
+
+          <h1 className="font-bold">About the Course:</h1>
           <p>{description}</p>
           <div>
             <p className="text-sm font-extrabold lg:text-lg lg:font-semibold">
